@@ -17,6 +17,14 @@
       height: 250px;
       border: 1px solid black;
     }
+
+    .button {
+      border: 1px solid black;
+      border-radius: 5px;
+      background-color: white;
+      color: black;
+      text-decoration: none;
+    }
   </style>
   <?php
 
@@ -34,7 +42,7 @@
     <form method="GET">
       <label for="password">Lunghezza password:</label>
       <input type="number" name="lenght">
-      <input type="submit" value="invia">
+      <input type="submit" value="invia" class="button">
       <h4>
         <?php
         $lenght = $_GET["lenght"] ?? false;
