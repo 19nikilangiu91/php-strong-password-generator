@@ -8,15 +8,10 @@
   <title>Php Strong Password Generator</title>
   <?php
 
+  session_start();
+
   require_once __DIR__ . "/libs/helper.php";
 
-  // $lenght = $_GET["lenght"] ?? false;
-  // if ($lenght === false) {
-  //   echo " ";
-  // } elseif ($lenght < 10) {
-  //   echo "Devi inserire almeno 10 caratteri";
-  // } else
-  //   echo "La password generata è: " . password_generate($lenght);
   ?>
 </head>
 
@@ -29,7 +24,18 @@
     <input type="submit" value="invia">
     <h4>
       <?php
-      echo getHtmlValidation($lenght);
+      $lenght = $_GET["lenght"] ?? false;
+      if ($lenght === false) {
+        echo " ";
+      } elseif ($lenght < 10) {
+        echo "Devi inserire almeno 10 caratteri";
+        // Milestone 3
+        // Invece di visualizzare la password nella `index.php`, effettuare un *redirect* ad una pagina dedicata che tramite `$_SESSION` recupererà la password da mostrare all’utente.
+      } else {
+        $show_password = password_generate($lenght);
+        $_SESSION["password"] = $show_password;
+        header('Location: ./password.php');
+      }
       ?>
     </h4>
   </form>
